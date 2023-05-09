@@ -132,30 +132,30 @@ pipeline{
             }
 
         }
-        stage('Creating EC2 Instance - Apply')
-        {
-        //     steps{
-        //         script {
-        //     bucketName = input (
-        //     message: 'Enter Name of the Bucket', 
-        //     ok: 'Submit', 
-        //     parameters: [string(name: 'bucketName', trim: true)]
-        //   )
-        steps{
-                withCredentials([[
-                    $class:'AmazonWebServicesCredentialsBinding',
-                    credentialsId:'aws-credentials',
-                    accessKeyVariable:'AWS_ACCESS_KEY_ID',
-                    secretKeyVariable:'AWS_SECRET_ACCESS_KEY']])
-                    {
-                        // sh "TEST=`pwd`"
-                        // sh "sed -i '' 's/'BUCKET_NAME'/$bucketName/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
-                        // sh "sed -i '' 's/'TICKET_NUMBER'/$ticket_number/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
-                        sh "terraform -chdir='QA/ec2' apply -auto-approve"
-                    }
-            }
+        // stage('Creating EC2 Instance - Apply')
+        // {
+        // //     steps{
+        // //         script {
+        // //     bucketName = input (
+        // //     message: 'Enter Name of the Bucket', 
+        // //     ok: 'Submit', 
+        // //     parameters: [string(name: 'bucketName', trim: true)]
+        // //   )
+        // steps{
+        //         withCredentials([[
+        //             $class:'AmazonWebServicesCredentialsBinding',
+        //             credentialsId:'aws-credentials',
+        //             accessKeyVariable:'AWS_ACCESS_KEY_ID',
+        //             secretKeyVariable:'AWS_SECRET_ACCESS_KEY']])
+        //             {
+        //                 // sh "TEST=`pwd`"
+        //                 // sh "sed -i '' 's/'BUCKET_NAME'/$bucketName/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+        //                 // sh "sed -i '' 's/'TICKET_NUMBER'/$ticket_number/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+        //                 sh "terraform -chdir='QA/ec2' apply -auto-approve"
+        //             }
+        //     }
 
-        }
+        // }
     }
 }
 // }
