@@ -127,7 +127,9 @@ pipeline{
                         // sh "TEST=`pwd`"
                         // sh "sed -i '' 's/'BUCKET_NAME'/$bucketName/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
                         // sh "sed -i '' 's/'TICKET_NUMBER'/$ticket_number/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+                        sh "terraform -chdir='QA/ec2' init"
                         sh "terraform -chdir='QA/ec2' plan"
+                        
                     }
             }
 
