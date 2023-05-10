@@ -20,6 +20,7 @@ source "amazon-ebs" "test-1" {
   region        = "us-east-1"
   source_ami = var.source-ami
   ssh_username = "ubuntu"
+  volume_size = 1
   # aws_access_key_id = var.aws_key
   # aws_secret_access_key = var.aws_secret
 }
@@ -42,8 +43,8 @@ build {
 
   #   }
     provisioner "file"{
-      destination ="/tmp/aditya"
-      source="/Users/nsriaditya/Documents/enphase/jenkins-packer/QA/OPS-1234/"
+      destination ="/tmp/scriptcp.sh"
+      source="/Users/nsriaditya/Documents/enphase/jenkins-packer/QA/OPS-1234/script.sh"
     } 
   
 }

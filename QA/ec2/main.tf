@@ -5,7 +5,7 @@ data "aws_ami" "example" {
   # owners           = ["self"]
   filter {
     name   = "name"
-    values = ["packer-success-test-12"]
+    values = ["packer-success-test-13"]
   }
 }
 resource "aws_instance" "aditya_packer" {
