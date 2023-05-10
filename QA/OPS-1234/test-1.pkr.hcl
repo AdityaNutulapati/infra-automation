@@ -29,7 +29,7 @@ build {
   sources = [
     "source.amazon-ebs.test-1"
   ]
-  volume_size = 1
+  # volume_size = 1
   # provisioner "shell" {
   #   # destination="/tmp/aditya"
   #   # source="/Users/nsriaditya/Documents/enphase/jenkins-packer/QA/OPS-1234/"
