@@ -43,69 +43,70 @@ pipeline{
         //         sh "/opt/homebrew/bin/packer init"
         //     }
         // }
-        // stage("Packer Image Building"){
-        //     steps{
-        //         //     script {
+        stage("Packer Image Building"){
+            steps{
+                //     script {
 
-        //         //     sh'''#!/bin/bash 
-        //         //                     curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo -y apt-key add -
-        //         //                     sudo -y apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-        //         //                     sudo -y apt-get update && sudo -y apt-get install packer
-        //         //                 '''
-        //         //     }
-        //             // -var='aws_key=$AWS_ACCESS_KEY_ID' -var='aws_secret=$AWS_SECRET_ACCESS_KEY'
-        //         // }
-        //         // stage("Scale MongoDB"){
+                //     sh'''#!/bin/bash 
+                //                     curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo -y apt-key add -
+                //                     sudo -y apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+                //                     sudo -y apt-get update && sudo -y apt-get install packer
+                //                 '''
+                //     }
+                    // -var='aws_key=$AWS_ACCESS_KEY_ID' -var='aws_secret=$AWS_SECRET_ACCESS_KEY'
+                // }
+                // stage("Scale MongoDB"){
                   
-        //             withCredentials([[
-        //             $class:'AmazonWebServicesCredentialsBinding',
-        //             credentialsId:'aws-credentials',
-        //             accessKeyVariable:'AWS_ACCESS_KEY_ID',
-        //             secretKeyVariable:'AWS_SECRET_ACCESS_KEY']])
-        //             {
-        //                 // sh "/opt/homebrew/bin/brew install docker"
-        //                 // -chdir='QA/'$ticket_number'/'
-        //                 // -var-file=`pwd`'/QA/variables/'$ticket_number'.pkrvars.hcl'
-        //                 // sh "TEST=`pwd`"
-        //                 // sh "echo TEST"
-        //                 echo "../../pwd"
-        //                 dir("QA/$ticket_number/")
-        //                 {
-        //                     sh "ls .."
-        //                     // sh "/opt/homebrew/bin/packer build -var-file='../variables/'$ticket_number'.pkrvars.hcl'"
-        //                     sh '''
-        //                     if [ -f "../variables/OPS-1234.pkrvars.hcl" ] 
-        //                             then
-        //                                 echo "Directory /path/to/dir exists." 
-        //                             else
-        //                                 echo "Error: Directory /path/to/dir does not exists."
-        //                             fi
-        //                     '''
-        //                     // ''
-        //                     // -var-file='abc'
-        //                     sh "/opt/homebrew/bin/packer init ."
-        //                     sh "/opt/homebrew/bin/packer build -var-file='../variables/'$ticket_number'.pkrvars.hcl' ."
-        //                 }
+                    withCredentials([[
+                    $class:'AmazonWebServicesCredentialsBinding',
+                    credentialsId:'aws-credentials',
+                    accessKeyVariable:'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable:'AWS_SECRET_ACCESS_KEY']])
+                    {
+                        // sh "/opt/homebrew/bin/brew install docker"
+                        // -chdir='QA/'$ticket_number'/'
+                        // -var-file=`pwd`'/QA/variables/'$ticket_number'.pkrvars.hcl'
+                        // sh "TEST=`pwd`"
+                        // sh "echo TEST"
+                        echo "../../pwd"
+                        dir("QA/$ticket_number/")
+                        {
+                            sh "ls .."
+                            // sh "/opt/homebrew/bin/packer build -var-file='../variables/'$ticket_number'.pkrvars.hcl'"
+                            sh '''
+                            if [ -f "../variables/OPS-1234.pkrvars.hcl" ] 
+                                    then
+                                        echo "Directory /path/to/dir exists." 
+                                    else
+                                        echo "Error: Directory /path/to/dir does not exists."
+                                    fi
+                            '''
+                            // ''
+                            // -var-file='abc'
+                            sh "/opt/homebrew/bin/packer init ."
+                            sh "/opt/homebrew/bin/packer build -var-file='../variables/'$ticket_number'.pkrvars.hcl' ."
+                        }
                         
-        //                 // sh "TEST=`pwd`"
-        //                 // sh "sed -i '' 's/'BUCKET_NAME'/$bucketName/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
-        //                 // sh "sed -i '' 's/'TICKET_NUMBER'/$ticket_number/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
-        //                 // sh "terraform -chdir='QA/S3/'$ticket_number'-'$file_name plan -var-file `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
-        //             }
+                        // sh "TEST=`pwd`"
+                        // sh "sed -i '' 's/'BUCKET_NAME'/$bucketName/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+                        // sh "sed -i '' 's/'TICKET_NUMBER'/$ticket_number/' `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+                        // sh "terraform -chdir='QA/S3/'$ticket_number'-'$file_name plan -var-file `pwd`'/QA/S3/Variables/'$file_name'.tfvars'"
+                    }
                     
-        //             // sh "dir=$(pwd)"
-        //             // sh "/opt/homebrew/bin/consul-template -template \"Dockerfile.tmpl:Dockerfile\" -once" 
-        //             // def dockerimage = docker.build("mongo-scaling-image")
-        //             // dockerimage.inside{
-        //             //     sh '''
-        //             //    atlas config set public_api_key ${PUBLIC_KEY}
-        //             //     atlas config set private_api_key ${PRIVATE_KEY}
-        //             //     atlas cluster update ${cluster_name}  --projectId ${project_id}  --tier ${cluster_size}
-        //             //     '''
-        //             // }
+                    // sh "dir=$(pwd)"
+                    // sh "/opt/homebrew/bin/consul-template -template \"Dockerfile.tmpl:Dockerfile\" -once" 
+                    // def dockerimage = docker.build("mongo-scaling-image")
+                    // dockerimage.inside{
+                    //     sh '''
+                    //    atlas config set public_api_key ${PUBLIC_KEY}
+                    //     atlas config set private_api_key ${PRIVATE_KEY}
+                    //     atlas cluster update ${cluster_name}  --projectId ${project_id}  --tier ${cluster_size}
+                    //     '''
+                    // }
                     
-        //         // }
-        // }
+                // }
+        }
+        }
         
     
     stage('Creating EC2 Instance - Plan')
